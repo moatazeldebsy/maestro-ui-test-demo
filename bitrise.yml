@@ -3,7 +3,31 @@ format_version: '11'
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: android
 workflows:
-  primary:
+  MaestroCloud:
+    description: |
+      Runs tests.
+
+      Next steps:
+      - Check out [Getting started with Android apps](https://devcenter.bitrise.io/en/getting-started/getting-started-with-android-apps.html).
+    steps:
+    - activate-ssh-key@4: {}
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - install-missing-android-tools@3:
+        inputs:
+        - gradlew_path: "$PROJECT_LOCATION/gradlew"
+    - android-build@1:
+        inputs:
+        - variant: debug
+        - module: app
+    - git::https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload.git@1.0.0:
+        inputs:
+        - app_file: "$BITRISE_APK_PATH"
+        - workspace: ".maestro"
+        - api_key: "$MAESTRO_API_KEY"
+    - cache-push@2: {}
+    - deploy-to-bitrise-io@2: {}
+  MaestroDemo:
     description: |
       Runs tests.
 
@@ -69,9 +93,9 @@ workflows:
         title: Run Maestro
     - custom-test-results-export@0:
         inputs:
-        - search_pattern: "*.xml"
         - base_path: "$BITRISE_SOURCE_DIR/results"
-        - test_name: Maestro Report
+        - search_pattern: "*.xml"
+        - test_name: Maestro UI Tests
     - cache-push@2: {}
     - deploy-to-bitrise-io@2: {}
 meta:
