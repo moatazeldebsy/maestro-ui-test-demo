@@ -89,7 +89,7 @@ workflows:
 
             mkdir results
 
-            maestro test --format junit --output results/report.xml ./maestro
+            maestro test --format junit --output results/report.xml .maestro
         title: Run Maestro
     - custom-test-results-export@0:
         inputs:
