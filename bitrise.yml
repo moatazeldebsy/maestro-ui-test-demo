@@ -20,7 +20,7 @@ workflows:
         inputs:
         - variant: debug
         - module: app
-    - git::https://github.com/mobile-dev-inc/bitrise-step-maestro-cloud-upload.git@1.0.0:
+    - maestro-cloud-upload@1:
         inputs:
         - app_file: "$BITRISE_APK_PATH"
         - workspace: ".maestro"
