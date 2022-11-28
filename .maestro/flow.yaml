@@ -1,6 +1,7 @@
 appId: de.moataz.maestro.demo
 ---
 
+
 - launchApp:
     appId: "de.moataz.maestro.demo"
     stopApp: true
