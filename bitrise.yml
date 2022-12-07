@@ -84,11 +84,8 @@ workflows:
             set -o pipefail
             # debug log
             set -x
-
             export PATH="$PATH":"$HOME/.maestro/bin"
-
             mkdir results
-
             maestro test --format junit --output results/report.xml .maestro
         title: Run Maestro
     - custom-test-results-export@0:
