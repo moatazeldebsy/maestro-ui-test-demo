@@ -1,5 +1,5 @@
 baselineBranch: main
 memoryLeaks:
-    enabled: false
+    enabled: true
 appSize:
-    enabled: false
+    enabled: true
