@@ -3,3 +3,8 @@ memoryLeaks:
     enabled: true
 appSize:
     enabled: true
+notifications:
+  email:
+    enabled: true
+    recipients:
+      - moatazeldebsy@gmail.com
